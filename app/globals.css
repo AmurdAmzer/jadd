@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* AdamsBrain design tokens. Source of truth: docs/design/design-tokens.md */
+/* Jadd design tokens. Source of truth: docs/design/design-tokens.md */
 @theme {
   /* Neutrals */
   --color-page: #ffffff;
