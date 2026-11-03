@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { brand } from "@/lib/brand";
+import { site } from "@/lib/site";
 import "./globals.css";
 
 const inter = { variable: "" };
 
 export const metadata: Metadata = {
-  title: brand.name,
-  description: brand.tagline,
+  title: site.name,
+  description: site.tagline,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -19,10 +19,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <div className="mx-auto max-w-[720px] px-4 py-3">
             <Link href="/" className="inline-block">
               <Image
-                src={brand.logo.src}
-                alt={brand.name}
-                width={brand.logo.width}
-                height={brand.logo.height}
+                src="/brand/jadd-lockup-horizontal.svg"
+                alt={site.name}
+                width={399}
+                height={160}
                 className="h-9 w-auto"
                 priority
               />
