@@ -4,17 +4,17 @@
 import { PrismaClient } from "@/app/generated/prisma/client";
 import { PrismaNeon } from "@prisma/adapter-neon";
 
-
 const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
 
-
 function createClient() {
-    const adapter = new PrismaNeon({ connectionString: process.env.DATABASE_URL });
+    const databaseUrl = process.env.DATABASE_URL;
+    if (!databaseUrl) throw new Error("DATABASE_URL is not set (.env locally, Vercel settings in production)");
+
+    const adapter = new PrismaNeon({ connectionString: databaseUrl });
     const client = new PrismaClient({ adapter });
 
     return client;
 }
-
 
 export const db = globalForPrisma.prisma ?? createClient();
 
