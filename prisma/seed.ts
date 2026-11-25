@@ -12,9 +12,8 @@ async function main() {
   const password = process.env.SEED_PASSWORD;
   if (!password) throw new Error("SEED_PASSWORD is not set in .env");
 
-  const passwordHash = await bcrypt.hash(password, 12);
-
   for (const username of usernames) {
+    const passwordHash = await bcrypt.hash(password, 12);
     await db.student.upsert({
       where: { username },
       update: {},
