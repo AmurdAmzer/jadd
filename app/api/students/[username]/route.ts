@@ -11,5 +11,6 @@ export async function GET(_request: Request, context: { params: Promise<{ userna
         select: { id: true, username: true, mustChangePassword: true },
     });
 
+    if (!student) return Response.json({error: "Student not found"}, {status: 404});
     return Response.json(student);
 }
