@@ -1,16 +1,13 @@
-// Returns one student by username, without the password hash.
+// Returns one student by username, without the password hash. Unknown username: 404.
 
-import { db } from "@/lib/db";
+import { getStudentByUsername } from "@/lib/students";
 
 export async function GET(_request: Request, context: { params: Promise<{ username: string }> }) {
 
     const { username } = await context.params;
 
-    const student = await db.student.findUnique({
-        where: { username },
-        select: { id: true, username: true, mustChangePassword: true },
-    });
+    const student = await getStudentByUsername(username);
 
-    if (!student) return Response.json({error: "Student not found"}, {status: 404});
+    if (!student) return Response.json({ error: "Student not found" }, { status: 404 });
     return Response.json(student);
 }
