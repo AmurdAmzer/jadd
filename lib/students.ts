@@ -9,3 +9,10 @@ export async function getStudentByUsername(username: string) {
         select: { id: true, username: true, mustChangePassword: true },
     });
 }
+
+const USERNAME_PATTERN = /^[a-z]+-[a-z]+$/;
+
+// Usernames are two lowercase words joined by a hyphen, e.g. blue-heron.
+export function isValidUsername(username: string){
+    return username.length <= 40 && USERNAME_PATTERN.test(username);
+}
