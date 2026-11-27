@@ -1,10 +1,13 @@
-// Shows one student. Unknown username: the 404 page.
+// Shows one student. Bad shape or unknown username: the 404 page.
 import { notFound } from "next/navigation";
-import { getStudentByUsername } from "@/lib/students";
+import { getStudentByUsername, isValidUsername } from "@/lib/students";
 
 export default async function StudentPage({ params }: { params: Promise<{ username: string }> }) {
   const { username } = await params;
+  if (!isValidUsername(username)) notFound();
+
   const student = await getStudentByUsername(username);
+
   if (!student) notFound();
 
   return (
