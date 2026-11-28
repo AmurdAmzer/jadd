@@ -4,7 +4,7 @@ import {db} from "@/lib/db";
 
 export async function getStudentByUsername(username: string) {
     
-    return await db.student.findUnique({
+    return await db.user.findUnique({
         where: { username },
         select: { id: true, username: true, mustChangePassword: true },
     });
